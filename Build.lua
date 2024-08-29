@@ -1,8 +1,8 @@
 -- premake5.lua
-workspace "New Project"
+workspace "Hazel"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "App"
+   startproject "Sandbox"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"

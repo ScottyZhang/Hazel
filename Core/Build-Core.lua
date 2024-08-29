@@ -1,15 +1,20 @@
-project "Core"
-   kind "StaticLib"
+project "Hazel"
+   kind "SharedLib"
    language "C++"
    cppdialect "C++20"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "Source/**.h", "Source/**.cpp" }
+   pchheader "hzpch.h"
+   pchsource "Source/hzpch.cpp"
+
+   files { "Source/**.h", "Source/**.cpp","../Events/**.cpp","../Events/**.h" }
 
    includedirs
    {
-      "Source"
+      "Source",
+      "../%{prj.name}",
+      "../Vendor/spdlog/include/"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
@@ -17,7 +22,13 @@ project "Core"
 
    filter "system:windows"
        systemversion "latest"
-       defines { }
+       defines{
+        "HZ_PLATFORM_WINDOWS",
+        "HZ_DLL_BUILD",
+        "_DEBUG",
+        "_CONSOLE",
+        "_WINDLL"
+    }
 
    filter "configurations:Debug"
        defines { "DEBUG" }

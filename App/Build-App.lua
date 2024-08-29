@@ -1,4 +1,4 @@
-project "App"
+project "Sandbox"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++20"
@@ -12,12 +12,17 @@ project "App"
       "Source",
 
 	  -- Include Core
-	  "../Core/Source"
+	  "../Core/Source",
+      "/%{prj.name}/Core/Source",
+      "/%{prj.name}/Core/Source/Hazel",
+      "../Vendor/spdlog/include/"
+
+
    }
 
    links
    {
-      "Core"
+      "Hazel"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
@@ -25,7 +30,10 @@ project "App"
 
    filter "system:windows"
        systemversion "latest"
-       defines { "WINDOWS" }
+       defines { "WINDOWS", "HZ_PLATFORM_WINDOWS",
+       "_DEBUG",
+       "_CONSOLE",
+       "_WINDLL" }
 
    filter "configurations:Debug"
        defines { "DEBUG" }
