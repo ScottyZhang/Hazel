@@ -1,27 +1,21 @@
 #include "hzpch.h"
 #include "Application.h"
-
 #include "../../Events/ApplicationEvent.h"
 #include "Hazel/Log.h"
 
 namespace Hazel {
-	Application::Application() {
+    Application::Application() {
+        m_Window = std::unique_ptr<Window>(Window::Create());
+    }
+    Application::~Application() {
 
-	}
-	Application::~Application() {
+    }
 
-	}
-
-	void Application::Run() {
-		WindowResizeEvent e(1234, 720);
-		if (e.IsInCategory(EventCategoryApplication)) {
-			HZ_TRACE(e);
-
-		}
-		if (e.IsInCategory(EventCategoryInput)) {
-			HZ_TRACE(e);
-		}
-		printf("with Precompiler Header\n");
-		while (true);
-	}
+    void Application::Run() {
+        while (true) {
+            while (m_Running) {
+                m_Window->OnUpdate();
+            }
+        }
+    }
 }

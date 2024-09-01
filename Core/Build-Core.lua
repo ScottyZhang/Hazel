@@ -10,11 +10,23 @@ project "Hazel"
 
    files { "Source/**.h", "Source/**.cpp","../Events/**.cpp","../Events/**.h" }
 
+
+
+
    includedirs
    {
       "Source",
       "../%{prj.name}",
-      "../Vendor/spdlog/include/"
+      "../Vendor/spdlog/include/",
+      "%{IncludeDir.GLFW}"
+   }
+
+   links{
+
+    "GLFW",
+    "opengl32.lib",
+    "dwmapi.lib"
+
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")

@@ -10,6 +10,11 @@ workspace "Hazel"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Core/vendor/GLFW/include"
+
+include "Core/vendor/GLFW"
+
 group "Core"
 	include "Core/Build-Core.lua"
 group ""
