@@ -2,21 +2,22 @@
 #include <Hazel.h>
 
 
-class Sandbox : public Hazel::Application {
+class Sandbox : public Hazel::Application
+{
 public:
-	Sandbox() {
+	Sandbox()
+	{
 
 	}
-	~Sandbox() {
+
+	~Sandbox()
+	{
 
 	}
-	//void Run() {
-	//	
-	//}
 
 };
 
-Hazel::Application* Hazel::CreateApplication() {
+Hazel::Application* Hazel::CreateApplication()
+{
 	return new Sandbox();
 }
-
